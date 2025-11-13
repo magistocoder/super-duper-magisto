@@ -1,0 +1,195 @@
+:root {
+  --bg-1: #071427;
+  --bg-2: #051021;
+  --card: rgba(255,255,255,0.03);
+  --muted: rgba(170,190,200,0.85);
+  --fg: #e6eef6;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  color: var(--fg);
+  font-family: Inter, system-ui, Roboto, Arial;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 28px auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  padding: 0 18px;
+  position: relative;
+  z-index: 2;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+h1 { margin: 0; font-size: 20px; }
+small { color: var(--muted); }
+
+#clearBtn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* Feed */
+#feed {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  padding: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.thumb {
+  width: 320px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.thumb img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.duration {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.55);
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.title {
+  color: var(--fg);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.excerpt { color: var(--muted); margin: 8px 0; }
+
+.meta-row {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.channel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.channel img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Right column widgets */
+.widget {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+#latestList div {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Empty state */
+#emptyState {
+  display: none;
+  padding: 24px;
+  text-align: center;
+  border: 1px dashed rgba(255,255,255,0.04);
+  border-radius: 10px;
+  color: var(--muted);
+}
+#emptyState.show { display: block; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; }
+  .thumb { width: 140px; }
+  .thumb img { height: 90px; }
+}
+
+/* ------------ Background AI / Robotics Elements ------------ */
+
+#bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 600px at 10% 10%, rgba(6,182,212,0.05), transparent 10%),
+    radial-gradient(1000px 600px at 90% 90%, rgba(120,80,255,0.06), transparent 12%);
+}
+
+.bg-item {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8fbad0;
+}
+
+/* Positions + animations */
+.bg-item.pattern { left: 6%; top: 8%; opacity: 0.7; animation: float1 14s infinite; }
+.bg-item.robot   { right: 8%; top: 10%; opacity: 0.12; animation: float2 18s infinite; }
+.bg-item.brain   { left: 16%; bottom: 16%; opacity: 0.14; animation: float1 15s infinite; }
+.bg-item.gear    { right: 4%; bottom: 12%; width:120px; height:120px; opacity:0.1; animation: spin 20s linear infinite; }
+.bg-item.camera  { left: 48%; top: 6%; width:110px; opacity:0.1; animation: float3 17s infinite; }
+.bg-item.mic     { left: 75%; top: 28%; width:110px; opacity:0.1; animation: float2 19s infinite; }
+
+@keyframes float1 {
+  0% { transform: translateY(0) scale(.96); }
+  50% { transform: translateY(-12px) scale(1.03); }
+  100% { transform: translateY(0) scale(.96); }
+}
+
+@keyframes float2 {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-10px) translateY(-6px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes float3 {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(10px) translateY(-8px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
